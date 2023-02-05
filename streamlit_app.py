@@ -30,8 +30,8 @@ streamlit.header("Fruityvice Fruit Advice!")
 
 # Import requests package and get response
 import requests
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-streamlit.text(fruityvice_response.json()) # just writes the data to the screen
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "watermelon") #separate the base URL from the fruit name
+# streamlit.text(fruityvice_response.json()) # just writes the data to the screen --> comment out
 
 # put json format
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
