@@ -35,6 +35,6 @@ streamlit.text(fruityvice_response.json()) # just writes the data to the screen
 
 # put json format
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-# # write your own comment - what does this do?
-# streamlit.dataframe(fruityvice_normalized)
+# put data to dataframe
+streamlit.dataframe(fruityvice_normalized)
 
