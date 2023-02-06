@@ -64,7 +64,7 @@ except URLErrror as e:
 
 
 # don't run anything past here while we troubleshoot
-streamlit.stop()
+#streamlit.stop()
 
 #move the Fruit Load List Query and Load into a Button Action
 streamlit.header("The fruit load list contains:")
