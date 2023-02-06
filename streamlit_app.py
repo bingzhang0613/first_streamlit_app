@@ -67,7 +67,7 @@ except URLErrror as e:
 #streamlit.stop()
 
 #move the Fruit Load List Query and Load into a Button Action
-streamlit.header("The fruit load list contains:")
+streamlit.header("View Our Fruit List - Add Your Favorites:")
 #Snowflake-related functions
 def get_fruit_load_list():
   with my_cnx.cursor() as my_cur:
@@ -75,9 +75,10 @@ def get_fruit_load_list():
     return my_cur.fetchall()
 
 # Add a button to load the fruit
-if streamlit.button('Get fruit Load List'):
+if streamlit.button('Get fruit List'):
   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
   my_data_rows = get_fruit_load_list()
+  my_cnx.close()
   streamlit.dataframe(my_data_rows)
 
 
@@ -102,7 +103,7 @@ if streamlit.button('Get fruit Load List'):
 # Allow the end user to add a fruit to the list
 def insert_row_snowflake(new_fruit):
   with my_cnx.cursor() as my_cur:
-    my_cur.execute("insert into fruit_load_list values ('from streamlit')")
+    my_cur.execute("insert into fruit_load_list values ('new_fruit')")
     return "Thanks for adding " + new_fruit
   
 add_my_fruit = streamlit.text_input('What fruit would you like to add?')
@@ -110,8 +111,6 @@ if streamlit.button('Add a Fruit to the list'):
   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
   back_from_function = insert_row_snowflake(add_my_fruit)
   streamlit.text(back_from_function)
-  
-streamlit.write('Thanks for adding ', add_my_fruit)
 
 # # New Section for another text entry
 # add_my_fruit = streamlit.text_input('What fruit would you like to add?','jackfruit')
